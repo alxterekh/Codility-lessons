@@ -9,7 +9,6 @@
 #include <stdio.h>
 
 int solution(int A[], int N);
-void deleteElementByIndex(int array[], int *elmentsCount, int number);
 
 int main(int argc, const char * argv[])
 {
@@ -23,33 +22,11 @@ int main(int argc, const char * argv[])
 
 int solution(int A[], int N)
 {
-    int index = 0;
-    while (N>1)
+    int sum = 0;
+    for (int index = 0; index < N; index++)
     {
-        if (A[0] == A[index] && index != 0)
-        {
-            deleteElementByIndex(A, &N, 0);
-            deleteElementByIndex(A, &N, index-1);
-            index = 0;
-        }
-        else if(index == N-1 && A[0] != A[index])
-        {
-            break;
-        }
-        else
-        {
-            index++;
-        }
+        sum ^=A[index];
     }
     
-    return A[0];
-}
-
-void deleteElementByIndex(int array[], int *elmentsCount, int number)
-{
-    *elmentsCount = *elmentsCount-1;
-    for (int index = number; index < *elmentsCount; index++)
-    {
-        array[index] = array[index+1];
-    }
+    return sum;
 }
